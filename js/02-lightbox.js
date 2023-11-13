@@ -32,16 +32,13 @@ function handleClick(event) {
     event.preventDefault()
 
     if (event.target === event.curruntTarget) {
-        return;
+        return gallery.next();
     }
 
     let gallery = new SimpleLightbox('.gallery__item a', { captionsData: "alt", captionDelay: 250, overlayOpacity: 0.5});
     gallery.on('show.simplelightbox', function () {
         `
-        <img class="gallery__image" src="${galleryItems.original}" alt="${galleryItems.description}">
+        <img class="gallery__image " src="${galleryItems.original}" alt="${galleryItems.description}">
         `
     });
-
-
-    gallery.next();
 }

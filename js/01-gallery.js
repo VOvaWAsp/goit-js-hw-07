@@ -21,7 +21,6 @@ function createMarkup(arr) {
 };
 
 
-
 function handleClick(event) {
     event.preventDefault()
 
@@ -31,11 +30,20 @@ function handleClick(event) {
 
 
 
-    const modalImg = event.target.closest(".gallery__link").href;
+    const modalImg = event.target.closest(".gallery__link").getAttribute("href");
     
     const instance = basicLightbox.create(`
-    <img class="gallery__image" src="${modalImg.original} alt="${modalImg.description}">
+    <img class="gallery__image" src="${modalImg}" alt="${modalImg.description}">
     `);
-
+    // console.log(modalImg)
     instance.show()
+
+
+
+    document.addEventListener("keydown", (event) => {
+        if (event.code === "Escape") {
+            return instance.close();
+        }
+        return;
+    })
 }
